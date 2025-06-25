@@ -1,11 +1,11 @@
-var fs = require('fs');
+const fs = require('fs');
 
 // Replace with require('pikud-haoref-api') if the package resides in node_modules
-var pikudHaoref = require('../index');
+const pikudHaoref = require('../index');
 
 // Pikud Haoref Google Maps API Key
-var options = {
-    googleMapsApiKey: 'AIzaSyCSeMZ5AxUgSWHy6EedcgeXjRC2irszdUQ'
+const options = {
+    googleMapsApiKey: 'AIzaSyCSeMZ5AxUgSWHy6EedcgeXjRC2irszdUQ',
 };
 
 // Fetch city metadata from Pikud Haoref's website
