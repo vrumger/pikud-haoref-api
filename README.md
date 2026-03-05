@@ -32,7 +32,8 @@ var poll = function () {
     // Get currently active alert
     // Example response:
     // { 
-    //    type: 'missiles', 
+    //    id: '134168709720000000', 
+    //    type: 'missiles',
     //    cities: ['תל אביב - מזרח', 'חיפה - כרמל ועיר תחתית', 'עין גדי'],
     //    instructions: 'היכנסו למבנה, נעלו את הדלתות וסגרו את החלונות'
     // }
@@ -65,11 +66,17 @@ Sample Alert Objects
 When there is a missle alert:
 ```
 { 
+    id: '134168709720000000',
     type: 'missiles', 
     cities: ['תל אביב - מזרח', 'חיפה - כרמל ועיר תחתית', 'עין גדי'],
     instructions: 'היכנסו למבנה, נעלו את הדלתות וסגרו את החלונות'
 }
 ```
+
+**Note:** The `id` is optional and may be ommitted. When present, it can be used for change tracking.
+
+---
+
 When there is no active alert:
 ```
 { 
@@ -77,6 +84,12 @@ When there is no active alert:
     cities: [] 
 }
 ```
+
+---
+
+When there are multiple alerts:
+
+As a historic design choice, the upstream JSON returned never needed to support more than one alert type at the same time. In practice, when there are multiple alert types at the same time, the response is updated quite frequently, so it is best to poll for new alerts every second or two to monitor for changes and new alert types.
 
 Alert Types
 ---
