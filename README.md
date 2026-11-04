@@ -94,6 +94,44 @@ As for the real-time alerts, when there are multiple alert types at the same tim
 
 This is a historic design choice, as the upstream Pikud Haoref JSON returned had not needed to support more than one alert type at the same time.
 
+Alerts History
+---
+
+Use `getAlertsHistory` to fetch past alerts from the API behind [oref.org.il/heb/alerts-history](https://www.oref.org.il/heb/alerts-history). Results are returned newest first, and all pages are fetched automatically.
+
+```js
+pikudHaoref.getAlertsHistory(function (err, alerts) {
+    if (err) {
+        return console.log('Retrieving alerts history failed: ', err);
+    }
+
+    // [{
+    //    rid: 706608,
+    //    data: 'אביתר',
+    //    date: '19.10.2026',
+    //    time: '20:31:16',
+    //    dateTime: '2026-10-19T20:31:00',
+    //    category: 13,
+    //    category_Desc: 'הוסר החשש לחדירת מחבלים',
+    //    matrixId: 0
+    // }]
+    console.log(alerts);
+}, options);
+```
+
+Options (all optional):
+
+* `period` - `1` for the last day (default), `2` for the last month
+* `from` / `to` - a date range (`Date` or `YYYY-MM-DDTHH:mm:ss` string in Israel time), used instead of `period`
+* `since` - a `Date`; stop paginating once alerts older than this are reached (useful for polling)
+* `cities` - a city name or array of city names to filter by
+* `categoryIds` - a category ID or array of category IDs to filter by
+* `lang` - `heb` (default), `eng`, `rus` or `arb`
+* `maxPages` - max number of pages (200 alerts each) to fetch, defaults to `500`
+* `proxy` / `httpsAgent` - passed on to axios
+
+**Note:** `date` and `time` are in Israel time. `dateTime` is only precise to the minute.
+
 Alert Types
 ---
 

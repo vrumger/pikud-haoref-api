@@ -8,6 +8,10 @@ module.exports = {
             // Additional URL to Pikud Haoref's unofficial rocket alert history JSON API
             api: 'https://www.oref.org.il/warningMessages/alert/History/AlertsHistory.json'
         },
+        alertsHistoryApi: {
+            // URL to Pikud Haoref's alerts history API (used by https://www.oref.org.il/heb/alerts-history)
+            api: 'https://www.oref.org.il/api/v1/AlertHistory'
+        },
         // URLs to Pikud Haoref's JSON files which contain city metadata
         website: {
             // Main cities JSON URL
